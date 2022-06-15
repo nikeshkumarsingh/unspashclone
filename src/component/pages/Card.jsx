@@ -11,7 +11,7 @@ import {
 
 import { CircleIcon } from "./Circleicon";
 
-export default function Statcard() {
+export default function Statcard({props}) {
   return (
     <Center py={6}>
       <Box
@@ -91,7 +91,7 @@ export default function Statcard() {
               bg: "black.500",
             }}
           >
-            Submit to Current Events
+            {props}
           </Button>
         </Box>
       </Box>
