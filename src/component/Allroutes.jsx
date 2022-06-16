@@ -8,8 +8,10 @@ import { Fashion } from "./pages/Fashion"
 import { Film } from "./pages/Film"
 import { Food } from "./pages/Food"
 import { Interiors } from "./pages/INteriors"
+import { Login } from "./pages/Login"
 import { Nature } from "./pages/Nature"
 import { People } from "./pages/People"
+import { Register } from "./pages/Register"
 import { Search } from "./pages/Search"
 import { Texture } from "./pages/Textures"
 import { Wallpaper } from "./pages/Wallpaper"
@@ -35,6 +37,8 @@ export const Allroutes=()=>{
             <Route path="/people" element={<People/>}></Route>
             <Route path="/interiors" element={<Interiors/>}></Route>
             <Route path="/search" element={<Search/>}></Route>
+            <Route path="/register" element={<Register/>}></Route>
+            <Route path="/login" element={<Login/>}></Route>
         </Routes>
     )
 }

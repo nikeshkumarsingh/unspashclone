@@ -18,18 +18,28 @@ import {
   HamburgerIcon,
   ChevronRightIcon,
   ChevronLeftIcon,
-  ChevronDownIcon
+  ChevronDownIcon,
 } from "@chakra-ui/icons";
-import { AiTwotoneContainer,AiOutlineUsergroupAdd,AiOutlineAppstore,AiTwotoneHdd,AiOutlineZhihu } from "react-icons/ai";
+import {
+  AiTwotoneContainer,
+  AiOutlineUsergroupAdd,
+  AiOutlineAppstore,
+  AiTwotoneHdd,
+  AiOutlineZhihu,
+} from "react-icons/ai";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./nav.css";
 import { Fetchdata, Saveserch } from "../Redux/action";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
+import { Logoutreq } from "../Redux/AuthRedux/action";
+
 export const Navbar = () => {
+  const status = useSelector((store) => store.userData.isAuth);
+  const user = useSelector((store) => store.userData.user);
   const navitems = [
     { title: "Current Events", loc: "/" },
     { title: "Wallpaper", loc: "/wallpaper" },
@@ -66,6 +76,7 @@ export const Navbar = () => {
     handledisplay();
     console.log(indexend);
   };
+  console.log(user);
   const handleprev = () => {
     if (indexstart == 0) {
       return;
@@ -88,6 +99,15 @@ export const Navbar = () => {
     if (e.keyCode == 13) {
       dispatch(Fetchdata(text2));
       navigate("/search", { replace: true });
+    }
+  };
+
+  const handlelogout = () => {
+    if (status) {
+      dispatch(Logoutreq());
+      navigate("/", { replace: true });
+    } else {
+      navigate("/login", { replace: true });
     }
   };
   return (
@@ -167,72 +187,76 @@ export const Navbar = () => {
               Submit a photo
             </Button>
             <Box w={"100%"} border={"1px solid grey"}></Box>
-            <Button borderRadius={"0px"} w={"100%"}>
-              Logut
+            <Button onClick={handlelogout} borderRadius={"0px"} w={"100%"}>
+              {status ? `Logout ${user.user.email}` : `login/signup`}
             </Button>
           </Box>
         </Popup>
         <Popup
-        marginRight={"20px"}
           trigger={
             <Box margin={"5px"}>
               <HamburgerIcon className="point" w="50px" />
             </Box>
           }
         >
-          <Box >
-          <Menu>
-                <MenuButton w={"100%"} borderRadius={"0px"} as={Button} leftIcon={<AiTwotoneContainer/>} rightIcon={<ChevronDownIcon />}>
-                    Company
-                </MenuButton>
-                <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                </MenuList>
-                <MenuButton w={"100%"} borderRadius={"0px"} as={Button} leftIcon={<AiOutlineUsergroupAdd/>} rightIcon={<ChevronDownIcon />}>
-                    Community
-                </MenuButton>
-                <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                </MenuList>
-                <MenuButton w={"100%"} borderRadius={"0px"} as={Button} leftIcon={<AiOutlineAppstore/>} rightIcon={<ChevronDownIcon />}>
-                    Product
-                </MenuButton>
-                <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                </MenuList>
-                <MenuButton w={"100%"} borderRadius={"0px"} as={Button} leftIcon={<AiTwotoneHdd/>} rightIcon={<ChevronDownIcon />}>
-                    Legal
-                </MenuButton>
-                <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                </MenuList>
-                <MenuButton w={"100%"} borderRadius={"0px"} as={Button} leftIcon={<AiOutlineZhihu/>} rightIcon={<ChevronDownIcon />}>
-                    English
-                </MenuButton>
-                <MenuList>
-                    <MenuItem>Download</MenuItem>
-                    <MenuItem>Create a Copy</MenuItem>
-                    <MenuItem>Mark as Draft</MenuItem>
-                    <MenuItem>Delete</MenuItem>
-                    <MenuItem>Attend a Workshop</MenuItem>
-                </MenuList>
-          </Menu>
+          <Box>
+            <Menu>
+              <MenuButton
+                w={"100%"}
+                borderRadius={"0px"}
+                as={Button}
+                leftIcon={<AiTwotoneContainer />}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Company
+              </MenuButton>
+              <MenuList>
+                <MenuItem>Download</MenuItem>
+                <MenuItem>Create a Copy</MenuItem>
+                <MenuItem>Mark as Draft</MenuItem>
+                <MenuItem>Delete</MenuItem>
+                <MenuItem>Attend a Workshop</MenuItem>
+              </MenuList>
+              <MenuButton
+                w={"100%"}
+                borderRadius={"0px"}
+                as={Button}
+                leftIcon={<AiOutlineUsergroupAdd />}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Community
+              </MenuButton>
+
+              <MenuButton
+                w={"100%"}
+                borderRadius={"0px"}
+                as={Button}
+                leftIcon={<AiOutlineAppstore />}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Product
+              </MenuButton>
+
+              <MenuButton
+                w={"100%"}
+                borderRadius={"0px"}
+                as={Button}
+                leftIcon={<AiTwotoneHdd />}
+                rightIcon={<ChevronDownIcon />}
+              >
+                Legal
+              </MenuButton>
+
+              <MenuButton
+                w={"100%"}
+                borderRadius={"0px"}
+                as={Button}
+                leftIcon={<AiOutlineZhihu />}
+                rightIcon={<ChevronDownIcon />}
+              >
+                English
+              </MenuButton>
+            </Menu>
           </Box>
         </Popup>
       </Flex>

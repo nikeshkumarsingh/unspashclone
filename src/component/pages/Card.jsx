@@ -8,10 +8,16 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
-
+import { useState } from "react";
+import {useNavigate}from "react-router-dom";
 import { CircleIcon } from "./Circleicon";
 
 export default function Statcard({props}) {
+  const navigate=useNavigate();
+  const handleclick=()=>{
+     navigate("/login",{replace:true})
+  }
+
   return (
     <Center py={6}>
       <Box
@@ -83,6 +89,7 @@ export default function Statcard({props}) {
             bg={"black"}
             color={"white"}
             rounded={"xl"}
+            onClick={handleclick}
             boxShadow={"0 5px 20px 0px rgb(72 187 120 / 43%)"}
             _hover={{
               bg: "grey.300",
