@@ -24,7 +24,7 @@ import {
   AiTwotoneHdd,
   AiOutlineZhihu,
 } from "react-icons/ai";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
@@ -63,7 +63,13 @@ export const Navbar = () => {
   ]);
   const [text2, setText2] = useState("");
   const navigate = useNavigate();
-
+  const [count,setConut]=useState(0)
+ useEffect(()=>{
+    if(status&&count<1){
+      navigate("/",{replace:true})
+      setConut((e)=>e+1)
+    }
+})
   const handlenext = () => {
     if (indexend == 13) {
       return;

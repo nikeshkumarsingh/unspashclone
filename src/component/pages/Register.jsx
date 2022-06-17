@@ -2,8 +2,9 @@ import {Box,Button ,Text,FormControl,FormLabel,Input,FormHelperText,FormErrorMes
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Postuser } from "../../Redux/AuthRedux/action";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,Link } from "react-router-dom";
 import "./reg.css";
+
 export const Register=()=>{
     const user=useSelector((store)=>store.userData.reg)
     const dispatch = useDispatch();
@@ -29,7 +30,7 @@ export const Register=()=>{
            <Text color={"white"} fontSize={"25px"} fontWeight={"medium"}>access 3,969,624 free, high resolution photos you can't find anywhere else</Text>
            </Box>
         </Box>
-        <Box  w={"80%"} margin={"auto"}>
+        <Box  w={"60%"} margin={"auto"}>
             <Text fontSize={"24px"} fontWeight={"bold"}> Register</Text>
       <FormControl isInvalid={isError} >
         <FormLabel htmlFor='email'>Email</FormLabel>
@@ -50,6 +51,7 @@ export const Register=()=>{
         <FormLabel htmlFor='password'>Password</FormLabel>
         <Input id="password" onChange={(e)=>setPass(e.target.value)} type="password" />
         <Button w={"50%"} onClick={hnadleSubmit} background={"rgb(40,116,240)"} marginTop={"35px"}>Submit</Button>
+        <Link to="/login"><Text id="regtxt" color={"blue"}>already have an account?</Text></Link>
       </FormControl>
       </Box>
       </Box>
