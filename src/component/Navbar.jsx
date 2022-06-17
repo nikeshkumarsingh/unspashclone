@@ -5,14 +5,11 @@ import {
   Input,
   Button,
   Menu,
-  ButtonMenu,
+
   MenuButton,
   MenuList,
   MenuItem,
-  MenuItemOption,
-  MenuGroup,
-  MenuOptionGroup,
-  MenuDivider,
+ Tooltip
 } from "@chakra-ui/react";
 import {
   HamburgerIcon,
@@ -119,16 +116,20 @@ export const Navbar = () => {
       zIndex={"1"}
     >
       <Flex justifyContent={"space-between"}>
-        <Box margin={"5px"}>
+        <Box margin={"5px"} >
+          <Tooltip hasArrow label="Unsplash">
           <Image
             className="point"
             boxSize="50px"
+            paddingBottom={"5px"}
             objectFit="cover"
             src="https://img.icons8.com/ios-filled/2x/unsplash.png"
             alt="logo"
           />
+          </Tooltip>
         </Box>
         <Box marginTop="5px" w="80%">
+          <Tooltip hasArrow label="search images">
           <Input
             onChange={(e) => setText2(e.target.value)}
             onKeyDown={handlesubmit}
@@ -136,10 +137,12 @@ export const Navbar = () => {
             w="100%"
             placeholder="search photos"
           />
+          </Tooltip>
         </Box>
         <Popup
           trigger={
             <Box margin={"5px"}>
+              <Tooltip hasArrow label="notification">
               <Image
                 className="point"
                 boxSize="35px"
@@ -147,6 +150,7 @@ export const Navbar = () => {
                 src="https://img.icons8.com/ios-glyphs/2x/bell.png"
                 alt="bell icon"
               />
+              </Tooltip>
             </Box>
           }
         >
@@ -154,12 +158,14 @@ export const Navbar = () => {
         </Popup>
         <Popup
           trigger={
+            
             <Box
               className="point"
               margin={"5px"}
               border={"1px solid grey"}
               borderRadius={"50px"}
             >
+              <Tooltip hasArrow label={status ? `Logout ${user.user.email}` : `login/signup`}>
               <Image
                 boxSize="35px"
                 objectFit="cover"
@@ -167,7 +173,9 @@ export const Navbar = () => {
                 src="https://img.icons8.com/external-febrian-hidayat-flat-febrian-hidayat/2x/external-User-user-interface-febrian-hidayat-flat-febrian-hidayat.png"
                 alt="user icon"
               />
+              </Tooltip>
             </Box>
+            // </Tooltip>
           }
         >
           <Box>
@@ -195,7 +203,7 @@ export const Navbar = () => {
         <Popup
           trigger={
             <Box margin={"5px"}>
-              <HamburgerIcon className="point" w="50px" />
+              <Tooltip hasArrow label="menue"><HamburgerIcon className="point" w="50px" /></Tooltip>
             </Box>
           }
         >
@@ -261,17 +269,24 @@ export const Navbar = () => {
         </Popup>
       </Flex>
       <Flex justifyContent={"space-around"} id="baritm">
+      <Tooltip hasArrow label="prev">
         <Button onClick={handleprev}>
           <ChevronLeftIcon />
+         
         </Button>
+        </Tooltip>
         {text1.map((e, i) => (
+          <Tooltip hasArrow label={e.title}>
           <Box className="coll" margin={"5px"} color={"grey"} key={i}>
             <Link to={e.loc}>{e.title}</Link>
           </Box>
+          </Tooltip>
         ))}
+        <Tooltip hasArrow label="next">
         <Button onClick={handlenext}>
           <ChevronRightIcon />
         </Button>
+        </Tooltip>
       </Flex>
       <Box></Box>
     </Box>

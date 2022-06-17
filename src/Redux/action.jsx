@@ -7,6 +7,21 @@ const fetchdatafailure = (payload) => {
     payload,
   };
 };
+const savedata=(payload)=>{
+  let obj={};
+  
+  payload.map((e)=>(
+    
+    e.preview_photos.map((k) => (
+      
+      obj[`a${k.id}`]=false
+     
+    ))
+   
+  ))
+  
+  localStorage.setItem("btn",JSON.stringify(obj))
+}
 const fetchdatarequest = (payload) => {
   return {
     type: types.FETCH_DATA_REQUEST,
@@ -14,6 +29,7 @@ const fetchdatarequest = (payload) => {
   };
 };
 const fetchdatasuccess = (payload) => {
+  savedata(payload)
   return {
     type: types.FETCH_DATA_SUCCESS,
     payload,

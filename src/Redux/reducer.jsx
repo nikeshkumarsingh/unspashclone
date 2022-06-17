@@ -3,7 +3,8 @@ const initState={
     pictures:[],
     error:"",
     loading:false,
-    ser:""
+    ser:"",
+    statid:{},
 }
 
  const handleReducer=(state=initState,action)=>{
@@ -29,6 +30,12 @@ const initState={
                 error:payload,
                 loading:false,
 
+            }
+        case types.SAVE_STAT_ID:
+            return{
+                ...state,
+                error:"",
+                statid:payload,
             }
         case types.FETCH_SEARCH_DATA:
             return{

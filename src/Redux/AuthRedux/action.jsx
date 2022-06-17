@@ -34,10 +34,10 @@ const Logoutreq=(payload)=>{
 }
 const Postuser=(payload)=>(dispatch)=>{
     dispatch(postrequest())
-    axios.post("http://localhost:5000/register",payload).then((res)=>dispatch(postsuccess(res.data))).catch((err)=>dispatch(postfailure(err.data)))
+    axios.post("https://unsplash-with-backend.herokuapp.com/register",payload).then((res)=>dispatch(postsuccess(res.data))).catch((err)=>dispatch(postfailure(err.data)))
 }
 const Postlogin=(payload)=>(dispatch)=>{
     dispatch(postrequest())
-    axios.post("http://localhost:5000/login",payload).then((res)=>dispatch(loginsuccess(res.data))).catch((err)=>dispatch(postfailure(err.response.data.message)))
+    axios.post("https://unsplash-with-backend.herokuapp.com/login",payload).then((res)=>dispatch(loginsuccess(res.data))).catch((err)=>dispatch(postfailure(err.response.data.message)))
 }
 export {Postuser,Postlogin,Logoutreq}
