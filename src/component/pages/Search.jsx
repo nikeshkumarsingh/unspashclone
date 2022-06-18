@@ -28,15 +28,7 @@ export const Search=()=>{
     const { isOpen, onOpen, onClose } = useDisclosure();
   const [address, setAddress] = useState("");
   const [back, setBack] = useState(JSON.parse(localStorage.getItem("btn")));
-    useEffect(() => {
-        if (red.length === 0) {
-          dispatch(Fetchdata(text));
-        }
-        if(num===0){
-            dispatch(Fetchdata(text))
-            setNum((num)=>num+1)
-        }
-      });
+
       let detail = JSON.parse(localStorage.getItem("btn"));
   const handleclassid = (e) => {
     console.log(e);
