@@ -12,6 +12,8 @@ https://unsplash-clone-red.vercel.app/
 Backend deployed link:
 https://unsplash-with-backend.herokuapp.com/
 
+Blog link:
+https://medium.com/@nikdoc1947/unsplash-clone-548258286b60
 # Technology I used :
 # In Frontend:
 1. React js
